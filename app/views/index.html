@@ -7,10 +7,60 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>Test</title>
+    <style media="screen">
+      html a{
+        color: blue;
+        cursor: pointer;
+        margin: 20px 10px;
+      }
+    </style>
   </head>
   <body>
-    <article id="app">
-      
-    </article>
+    <article id="app"></article>
+    <a class="api a">a.html</a>
+    <a class="api b">b.html</a>
+
+    <script type="text/javascript">
+        // 注册路由
+        document.querySelectorAll('.api').forEach(item=>{
+          item.addEventListener('click',(e)=>{
+            e.preventDefault();
+            let link=item.textContent;
+            window.history.pushState({name:'api'},link,link);
+          },false)
+        });
+
+        // 监听路由
+        window.addEventListener('popstate',(e)=>{
+          console.log({
+            location:location.href,
+            state:e.state
+          });
+        },false)
+    </script>
+
+    <h3>Hash</h3>
+
+    <a class="hash a">#a.html</a>
+    <a class="hash b">#b.html</a>
+
+    <script type="text/javascript">
+    // 注册路由
+    document.querySelectorAll('.hash').forEach(item=>{
+      item.addEventListener('click',(e)=>{
+        e.preventDefault();
+        let link=item.textContent;
+        location.hash=link;
+      },false)
+    });
+
+    // 监听路由
+    window.addEventListener('hashchange',(e)=>{
+      console.log({
+        location:location.href,
+        hash:location.hash
+      });
+    },false)
+    </script>
   </body>
 </html>
