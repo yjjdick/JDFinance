@@ -36,6 +36,10 @@ export default {
       display: none;
     }
     margin-top: 120px;
-    .content{}
+    .content{
+      img{
+        width: 100%;
+      }
+    }
   }
 </style>
