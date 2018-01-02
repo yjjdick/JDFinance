@@ -35,7 +35,11 @@ export default {
     >h4{
       display: none;
     }
-    margin-top: 120px;
-    .content{}
+    margin-top: 120px!important;
+    .content{
+      img{
+        width: 100%;
+      }
+    }
   }
 </style>
