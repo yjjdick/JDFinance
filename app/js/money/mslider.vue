@@ -38,6 +38,9 @@ export default {
     .content{
       .slider{
         margin-top: 120px;
+        img{
+          width: 100%;
+        }
       }
     }
   }
