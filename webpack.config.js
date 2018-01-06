@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = env => {
   if (!env) {
     env = {}
@@ -12,7 +12,7 @@ module.exports = env => {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({template: './app/views/index.html'}),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ];
   if(env.production){
     plugins.push(
@@ -23,15 +23,14 @@ module.exports = env => {
       }),
       new ExtractTextPlugin("style.css", {ignoreOrder: true}),
       new webpack.optimize.ModuleConcatenationPlugin(),
-      new UglifyJSPlugin({
+      new UglifyJsPlugin({
         sourceMap: true
-      }),
-
+      })
     )
   }
   return {
     entry: ['./app/js/viewport.js','./app/js/main.js'],
-    devtool: env.production?'source-map':'',
+    devtool: 'source-map',
     devServer: {
       contentBase: './dist',
       hot: true,
